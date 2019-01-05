@@ -1,8 +1,4 @@
-@import '~@angular/cdk/overlay';
-
-::ng-deep {
-  @include cdk-overlay();
-}
+@import '~@angular/cdk/overlay-prebuilt.css';
 
 $blue: #27a4f7;
 $gray: lightgray;
@@ -73,6 +69,7 @@ selected-color: $blue,
 
   &__weekday {
     @include var(margin, weekday-margin);
+    font-weight: bold;
   }
 
   &__date {
