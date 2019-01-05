@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-nepali-datepicker": [
+        "dist/angular-nepali-datepicker"
+      ],
+      "angular-nepali-datepicker/*": [
+        "dist/angular-nepali-datepicker/*"
+      ]
+    }
   }
 }

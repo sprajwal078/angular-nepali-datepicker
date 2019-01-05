@@ -133,6 +133,41 @@
           }
         }
       }
+    },
+    "angular-nepali-datepicker": {
+      "root": "projects/angular-nepali-datepicker",
+      "sourceRoot": "projects/angular-nepali-datepicker/src",
+      "projectType": "library",
+      "prefix": "np",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-nepali-datepicker/tsconfig.lib.json",
+            "project": "projects/angular-nepali-datepicker/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-nepali-datepicker/src/test.ts",
+            "tsConfig": "projects/angular-nepali-datepicker/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-nepali-datepicker/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-nepali-datepicker/tsconfig.lib.json",
+              "projects/angular-nepali-datepicker/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-nepali-datepicker-demo"
