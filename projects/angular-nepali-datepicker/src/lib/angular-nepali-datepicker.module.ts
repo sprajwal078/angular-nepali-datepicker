@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { AngularNepaliDatepickerComponent } from './angular-nepali-datepicker.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { ToNpPipe } from './datepicker/to-np.pipe';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [DatepickerComponent, ToNpPipe],
-  imports: [
-  ],
+  imports: [OverlayModule],
   exports: [DatepickerComponent]
 })
 export class AngularNepaliDatepickerModule { }
