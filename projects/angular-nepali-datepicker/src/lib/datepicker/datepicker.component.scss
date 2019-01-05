@@ -1,0 +1,105 @@
+@import '~@angular/cdk/overlay';
+
+::ng-deep {
+  @include cdk-overlay();
+}
+
+$blue: #27a4f7;
+$gray: lightgray;
+$vars:(font-family: 'arial, sans-serif',
+font-size: 14px,
+container-padding: 8px 5px,
+container-border-color: $gray,
+container-border: 1px solid,
+container-background-color: white,
+
+option-margin: 0 0 7px,
+option-year-container-margin: 0 10px 0,
+
+days-padding: 0 3px,
+weekday-margin: 0 0 5px,
+date-padding: 6px,
+
+active-day-color: white,
+active-day-background: $blue,
+hover-color: $blue,
+selected-color: $blue,
+);
+
+// fallback mixin for older browsers
+@mixin var($property, $varName) {
+  #{$property}: map-get($vars, $varName);
+  #{$property}: var(--#{$varName});
+}
+
+.datepicker {
+  &__input {
+    display: block;
+  }
+
+  &__container {
+
+    @each $varName,
+    $value in $vars {
+      --#{$varName}: #{$value};
+    }
+
+    display: inline-block;
+    @include var(font-family, font-family);
+    @include var(font-size, font-size);
+    @include var(padding, container-padding);
+    @include var(border, container-border);
+    @include var(border-color, container-border-color);
+    @include var(background-color, container-background-color);
+  }
+
+  &__options {
+    &-container {
+      @include var(margin, option-margin);
+    }
+
+    &-year-container {
+      display: inline-block;
+      @include var(margin, option-year-container-margin);
+    }
+  }
+
+  &__days {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    @include var(padding, days-padding);
+  }
+
+  &__weekday {
+    @include var(margin, weekday-margin);
+  }
+
+  &__date {
+    @include var(padding, date-padding);
+    cursor: pointer;
+
+    &--active {
+      @include var(color, active-day-color);
+      @include var(background, active-day-background);
+    }
+
+    &--current-day {
+      &:not(.datepicker__date--active) {
+        @include var(color, selected-color);
+        font-weight: bold;
+      }
+    }
+
+    &--disabled {
+      pointer-events: none;
+    }
+
+    &:hover {
+      &:not(.datepicker__date--active) {
+        @include var(color, hover-color);
+        transition: color .3s;
+      }
+    }
+  }
+}

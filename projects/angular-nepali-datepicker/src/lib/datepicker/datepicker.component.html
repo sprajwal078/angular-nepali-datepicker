@@ -1,3 +1,82 @@
 <p>
   datepicker works!
 </p>
+<input
+    class="datepicker__input"
+    type="text"
+    [value]="formattedDate | toNp: language"
+    [ngClass]="inputClass"
+    #origin="cdkOverlayOrigin"
+    cdk-overlay-origin
+    (focus)="open()"
+    (keydown)="$event.preventDefault()"
+    aria-hidden="true"
+    [hidden]="hideInput">
+<ng-template
+    cdk-connected-overlay
+    cdkConnectedOverlayLockPosition
+    cdkConnectedOverlayHasBackdrop
+    cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+    [cdkConnectedOverlayOrigin]="origin"
+    [cdkConnectedOverlayOpen]="isOpen"
+    (backdropClick)="close()"
+    (detach)="close()">
+  <ng-container [ngTemplateOutlet]="dp"></ng-container>
+</ng-template>
+
+<ng-container [ngTemplateOutlet]="dp" *ngIf="alwaysVisible"></ng-container>
+
+<ng-template #dp>
+  <div class="datepicker__container">
+    <div class="datepicker__options-container">
+      <span class="datepicker__options-year-container">
+        <span>
+          {{'Year' | toNp : language : 'word'}}:
+        </span>
+        <select (change)="selectYear($event.target.value)">
+          <option
+              *ngFor="let year of years"
+              [value]="year"
+              [selected]="year === currentNepaliDate?.year">
+            {{year | toNp: language }}
+          </option>
+        </select>
+      </span>
+      <span class="datepicker__options-month-container">
+        <span>{{'Month' | toNp : language : 'word'}}: </span>
+        <select (change)="selectMonth($event.target.value)">
+          <option
+              *ngFor="let month of monthsMapping[language][monthDisplayType]; index as i"
+              [value]="month"
+              [selected]="i === currentNepaliDate?.month">
+            {{month}}
+          </option>
+        </select>
+      </span>
+    </div>
+    <div class="datepicker__days-container">
+      <div class="datepicker__days" *ngFor="let day of daysMapping[language][dayDisplayType]; index as i">
+        <div class="datepicker__weekday">{{day}}</div>
+        <div class="datepicker__date-container" *ngFor="let date of currentMonthData[i]">
+          <div
+              class="datepicker__date"
+              [class.datepicker__date--active]="
+                date === selectedDate?.day &&
+                currentNepaliDate.month === selectedDate?.month &&
+                currentNepaliDate.year === selectedDate?.year
+              "
+              [class.datepicker__date--current-day]="
+                date === nepaliDateToday.day &&
+                currentNepaliDate.month === nepaliDateToday.month &&
+                currentNepaliDate.year === nepaliDateToday.year
+              "
+              [class.datepicker__date--disabled]="!date"
+              (click)="selectDate(date)">
+            <span *ngIf="!date">&nbsp;</span>
+            {{date | toNp: language }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
