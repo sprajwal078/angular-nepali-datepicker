@@ -1,7 +1,6 @@
 # Angular Nepali Datepicker
 
 ## Installation
-## Installation
 ```bash
 npm install angular-nepali-datepicker
 ```
