@@ -1,3 +1,4 @@
+
 export interface MonthData {
   0: number[];
   1: number[];
@@ -12,4 +13,26 @@ export interface NepaliDate {
   day: number;
   month: number;
   year: number;
+}
+
+
+interface Values {
+  default: string[];
+  short?: string[];
+  modern?: string[];
+}
+
+export interface MonthMapping {
+  en: Values;
+  ne: Values;
+}
+
+export interface DaysMapping {
+  en: Values;
+  ne: Values;
+}
+
+export interface WordsMapping {
+  year: string;
+  month: string;
 }

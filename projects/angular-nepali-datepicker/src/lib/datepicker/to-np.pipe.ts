@@ -1,15 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { numberMapping, wordsMapping } from './mapping';
 
 @Pipe({
   name: 'toNp'
 })
 export class ToNpPipe implements PipeTransform {
-
-  numberMapping = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
-  wordsMapping = {
-    year: 'साल',
-    month: 'महिना'
-  };
 
   transform(value: number | string, language: string = 'ne', type: string = 'number'): any {
     if (value) {
@@ -18,10 +13,10 @@ export class ToNpPipe implements PipeTransform {
           case 'number':
             const split = value.toString().split('');
             return split.map(n => {
-              return this.numberMapping[+n] ? this.numberMapping[+n] : n;
+              return numberMapping[+n] ? numberMapping[+n] : n;
             }).join('');
           case 'word':
-            return this.wordsMapping[value.toString().toLowerCase()];
+            return wordsMapping[value.toString().toLowerCase()];
           default:
         }
       }

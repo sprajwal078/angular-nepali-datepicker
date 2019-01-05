@@ -2,24 +2,25 @@
 
 $blue: #27a4f7;
 $gray: lightgray;
-$vars:(font-family: 'arial, sans-serif',
-font-size: 14px,
-container-padding: 8px 5px,
-container-border-color: $gray,
-container-border: 1px solid,
-container-background-color: white,
+$vars:(
+  font-family: 'arial, sans-serif',
+  font-size: 14px,
+  container-padding: 8px 5px,
+  container-border-color: $gray,
+  container-border: 1px solid,
+  container-background-color: white,
+  select-height: 24px,
 
-option-margin: 0 0 7px,
-option-year-container-margin: 0 10px 0,
+  option-margin: 0 0 7px,
+  option-year-container-margin: 0 10px 0,
 
-days-padding: 0 3px,
-weekday-margin: 0 0 5px,
-date-padding: 6px,
+  days-size: 40px,
+  weekday-margin: 0 0 5px,
 
-active-day-color: white,
-active-day-background: $blue,
-hover-color: $blue,
-selected-color: $blue,
+  active-day-color: white,
+  active-day-background: $blue,
+  hover-color: $blue,
+  selected-color: $blue,
 );
 
 // fallback mixin for older browsers
@@ -50,7 +51,11 @@ selected-color: $blue,
   }
 
   &__options {
+
     &-container {
+      select {
+        @include var(height, select-height);
+      }
       @include var(margin, option-margin);
     }
 
@@ -64,16 +69,19 @@ selected-color: $blue,
     display: inline-block;
     vertical-align: top;
     text-align: center;
-    @include var(padding, days-padding);
+    @include var(width, days-size);
   }
 
   &__weekday {
     @include var(margin, weekday-margin);
     font-weight: bold;
+    text-align: center;
   }
 
   &__date {
-    @include var(padding, date-padding);
+    @include var(width, days-size);
+    @include var(height, days-size);
+    @include var(line-height, days-size);
     cursor: pointer;
 
     &--active {

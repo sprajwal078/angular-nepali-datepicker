@@ -9,4 +9,4 @@ import { OverlayModule } from '@angular/cdk/overlay';
   imports: [CommonModule, OverlayModule],
   exports: [DatepickerComponent]
 })
-export class AngularNepaliDatepickerModule { }
+export class NpDatepickerModule { }

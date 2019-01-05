@@ -1,7 +1,8 @@
 import { Component, OnInit, forwardRef, Input, ViewEncapsulation } from '@angular/core';
 import * as NepaliDateConverter from 'nepali-date';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NepaliDate, MonthData } from './types';
+import { NepaliDate, MonthData, DaysMapping, MonthMapping } from './types';
+import { daysMapping, monthsMapping } from './mapping';
 
 @Component({
   selector: 'np-datepicker',
@@ -30,41 +31,9 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
 
   currentMonthData: MonthData;
 
-  daysMapping = {
-    en: {
-      default: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      short: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-    },
-    ne: {
-      default: ['आइत', 'सोम', 'मंगल्', 'बुध', 'बिही', 'शुक्र', 'शनि'],
-      short: ['आ', 'सो', 'मं', 'बु', 'बि', 'शु', 'श']
-    }
-  };
+  daysMapping: DaysMapping = daysMapping;
 
-  monthsMapping = {
-    en: {
-      default: [
-        'Baisakh', 'Jestha', 'Asadh', 'Shrawan', 'Bhadra', 'Ashwin', 'Kartik', 'Mangsir', 'Poush', 'Marga', 'Falgun', 'Chaitra'
-      ],
-      modern: [
-        'Baisakh', 'Jeth', 'Asaar', 'Saawn', 'Bhadau', 'Aashoj', 'Kartik', 'Mangsir', 'Push', 'Magh', 'Fagun', 'Chait'
-      ],
-      short: [
-        'Bai', 'Jes', 'Asa', 'Shr', 'Bha', 'Ash', 'Kar', 'Man', 'Pou', 'Mar', 'Fal', 'Cha'
-      ]
-    },
-    ne: {
-      default: [
-        'बैशाख', 'जेष्ठ', 'आषाढ', 'श्रवण', 'भाद्र', 'अश्विन', 'कार्तिक', 'मङ्सिर', 'पौष', 'मार्ग', 'फाल्गुन', 'चैत्र'
-      ],
-      modern: [
-        'बैशाख', 'जेठ', 'असार', 'साउन', 'भदौ', 'आशोज्', 'कार्तिक', 'मङ्सिर्', 'पुष', 'माघ', 'फागुन', 'चैत'
-      ],
-      short: [
-        'बै', 'जे', 'अ', 'श्रा', 'भा', 'आ', 'का', 'मं', 'पौ', 'मा', 'फा', 'चै'
-      ]
-    }
-  };
+  monthsMapping: MonthMapping = monthsMapping;
 
   isOpen = false;
 
@@ -81,16 +50,16 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   language: 'en' | 'ne' = 'ne';
 
   @Input()
-  monthDisplayType: 'default' | 'modern' = 'default';
+  monthDisplayType: 'default' | 'modern' | 'short' = 'default';
 
   @Input()
-  dayDisplayType: 'default' | 'short' = 'short';
+  dayDisplayType: 'default' | 'short' = 'default';
 
   @Input()
   dateFormatter = (selectedDate: NepaliDate) => {
-    const day = selectedDate.day < 10 ? '0' + selectedDate.day : selectedDate.day;
-    const month = selectedDate.month < 10 ? '0' + selectedDate.month : selectedDate.month;
-    return `${month}/${day}/${this.selectedDate.year}`;
+    const dd = selectedDate.day < 10 ? '0' + selectedDate.day : selectedDate.day;
+    const mm = selectedDate.month < 10 ? '0' + selectedDate.month : selectedDate.month;
+    return `${dd}/${mm}/${this.selectedDate.year}`;
   }
 
   constructor() { }
@@ -102,14 +71,26 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
       month: nepaliDateToday.getMonth(),
       day: nepaliDateToday.getDate()
     };
-    const currentNepaliDate = new NepaliDateConverter(this.currentDate);
+
+    this.setCurrentDate();
+    this.populateYears();
+    this.setCurrentMonthData();
+  }
+
+  setCurrentDate() {
+    let currentNepaliDate;
+    if (!this.selectedDate) {
+      currentNepaliDate = new NepaliDateConverter(this.currentDate);
+    } else {
+      const { year, month, day } = this.selectedDate;
+      currentNepaliDate = new NepaliDateConverter(year, month, day);
+      this.currentDate = currentNepaliDate.getEnglishDate();
+    }
     this.currentNepaliDate = {
       year: currentNepaliDate.getYear(),
       month: currentNepaliDate.getMonth(),
       day: currentNepaliDate.getDate()
     };
-    this.populateYears();
-    this.setCurrentMonthData();
   }
 
   populateYears() {
@@ -147,9 +128,7 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  registerOnTouched(fn) {
-    this.propagateTouch = fn;
-  }
+  registerOnTouched() { }
 
   registerOnChange(fn) {
     this.propagateChange = fn;
@@ -217,6 +196,7 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
     this.selectedDate = { ...this.currentNepaliDate, day };
     this.formatValue();
     this.close();
+    this.propagateChange(this.selectedDate);
   }
 
   selectYear(year: string) {
@@ -245,6 +225,7 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
 
   close() {
     this.isOpen = false;
+    this.setCurrentDate();
   }
 
 }

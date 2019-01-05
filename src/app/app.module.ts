@@ -2,15 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AngularNepaliDatepickerModule } from 'angular-nepali-datepicker';
+import { NpDatepickerModule } from 'angular-nepali-datepicker';
+import { FormsModule } from '@angular/forms';
+import { ExampleDemoComponent } from './example-demo/example-demo.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ExampleDemoComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
-    AngularNepaliDatepickerModule
+    NpDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
