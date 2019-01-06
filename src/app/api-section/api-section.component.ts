@@ -59,6 +59,3 @@ export class ApiSectionComponent {
     }
   ];
 }
-
-//   <!-- @Input()
-// dateFormatter-- >
