@@ -8,6 +8,10 @@ npm install angular-nepali-datepicker
 ## Demo
 https://sprajwal078.github.io/angular-nepali-datepicker/
 
+## Note
+This package uses [@angular/cdk](https://www.npmjs.com/package/@angular/cdk) and
+[nepali-date](https://www.npmjs.com/package/nepali-date)
+
 ## Usage
 Import the NpDatepickerModule in your **app.module.ts**
 
