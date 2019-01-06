@@ -49,13 +49,13 @@ export class ExamplesSectionComponent {
 `,
 
     {
-      false: `
+      'true': `
 <np-datepicker
   [(ngModel)]="date"
   alwaysVisible="true">
 </np-datepicker>
 `,
-      true: `
+      'false': `
 <np-datepicker
   [(ngModel)]="date"
   alwaysVisible="true"

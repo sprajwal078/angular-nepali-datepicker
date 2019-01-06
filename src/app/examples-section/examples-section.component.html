@@ -46,7 +46,7 @@
 </app-example-demo>
 
 <!-- always visible / hide input -->
-<app-example-demo class="d-block mt-3" heading="Always visible" [code]="api[4][hideInput]">
+<app-example-demo class="d-block mt-3" heading="Always visible" [code]="api[4]['' + hideInput]">
   <p>Make the datepicker always visible</p>
   <div class="form-group">
     <input type="checkbox" id="hideInput" [(ngModel)]="hideInput">
