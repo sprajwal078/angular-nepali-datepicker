@@ -1,0 +1,88 @@
+<!-- default -->
+<app-example-demo class="d-block mt-2" heading="Default" [code]="api[0]">
+  <np-datepicker [(ngModel)]="date1"></np-datepicker>
+  <div class="mt-2">
+    value: {{date1 | json}}
+  </div>
+</app-example-demo>
+
+<!-- modern month -->
+<app-example-demo class="d-block mt-3" heading="Month Style 2" [code]="api[1]">
+  <p>
+    The modern style month will show the months like this
+  </p>
+  <samp>बैशाख, जेठ, असार, साउन, भदौ, अशोज...</samp>
+  <np-datepicker
+      [(ngModel)]="date2"
+      monthDisplayType="modern">
+  </np-datepicker>
+  <div class="mt-2">
+    value: {{date2 | json}}
+  </div>
+</app-example-demo>
+
+<!-- short day / month -->
+<app-example-demo class="d-block mt-3" heading="Short day and month name" [code]="api[2]">
+  <np-datepicker
+      [(ngModel)]="date3"
+      monthDisplayType="short"
+      dayDisplayType="short">
+  </np-datepicker>
+  <div class="mt-2">
+    value: {{date3 | json}}
+  </div>
+</app-example-demo>
+
+<!-- language -->
+<app-example-demo class="d-block mt-3" heading="Language" [code]="api[3]">
+  <p>You can show the dates, month and days in English as well</p>
+  <np-datepicker
+      [(ngModel)]="date4"
+      language="en">
+  </np-datepicker>
+  <div class="mt-2">
+    value: {{date4 | json}}
+  </div>
+</app-example-demo>
+
+<!-- always visible / hide input -->
+<app-example-demo class="d-block mt-3" heading="Always visible" [code]="api[4][hideInput]">
+  <p>Make the datepicker always visible</p>
+  <div class="form-group">
+    <input type="checkbox" id="hideInput" [(ngModel)]="hideInput">
+    <label for="hideInput" class="ml-3">
+      hideInput
+    </label>
+  </div>
+  <np-datepicker
+      [(ngModel)]="date5"
+      alwaysVisible="true"
+      [hideInput]="hideInput">
+  </np-datepicker>
+  <div class="mt-2">
+    value: {{date5 | json}}
+  </div>
+</app-example-demo>
+
+<!-- format date -->
+<app-example-demo class="d-block mt-3" heading="Format Input" [code]="api[5]">
+  <p>Provide function to format the selected date to display on the input</p>
+  <np-datepicker [(ngModel)]="date6" [dateFormatter]="formatter" class="w-100" inputClass="w-100">
+  </np-datepicker>
+  <div class="mt-2">
+    value: {{date6 | json}}
+  </div>
+</app-example-demo>
+
+<!-- input class -->
+<app-example-demo class="d-block mt-3" heading="Input class" [code]="api[6]">
+  <p>Provide class to the input to make the input match your theme</p>
+  <np-datepicker
+      [(ngModel)]="date7"
+      class="form-group"
+      inputClass="form-control">
+  </np-datepicker>
+  <div class="mt-2">
+    value: {{date7 | json}}
+  </div>
+</app-example-demo>

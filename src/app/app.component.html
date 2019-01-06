@@ -1,49 +1,20 @@
 <div class="p-4">
   <h2>Angular Nepali Datepicker</h2>
-  <!-- default -->
-  <app-example-demo class="d-block mt-4" heading="Default" [code]="api[0]">
-    <np-datepicker [(ngModel)]="date1"></np-datepicker>
-    <div class="mt-2">
-      value: {{date1 | json}}
-    </div>
-  </app-example-demo>
 
-  <!-- modern month -->
-  <app-example-demo class="d-block mt-3" heading="Month Style 2" [code]="api[1]">
-    <p>
-      The modern style month will show the months like this
-    </p>
-    <samp>बैशाख, जेठ, असार, साउन, भदौ, अशोज...</samp>
-    <np-datepicker
-        [(ngModel)]="date2"
-        monthDisplayType="modern">
-    </np-datepicker>
-    <div class="mt-2">
-      value: {{date2 | json}}
-    </div>
-  </app-example-demo>
-
-  <!-- short day / month -->
-  <app-example-demo class="d-block mt-3" heading="Short day and month name" [code]="api[2]">
-    <np-datepicker
-        [(ngModel)]="date3"
-        monthDisplayType="short"
-        dayDisplayType="short">
-    </np-datepicker>
-    <div class="mt-2">
-      value: {{date2 | json}}
-    </div>
-  </app-example-demo>
-
-  <!-- language -->
-  <app-example-demo class="d-block mt-3" heading="Language" [code]="api[3]">
-    <p>You can show the dates, month and days in English as well</p>
-    <np-datepicker
-        [(ngModel)]="date4"
-        language="en">
-    </np-datepicker>
-    <div class="mt-2">
-      value: {{date2 | json}}
-    </div>
-  </app-example-demo>
+  <ngb-tabset>
+    <ngb-tab title="Examples">
+      <ng-template ngbTabContent>
+        <div class="p-3">
+          <app-examples-section></app-examples-section>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="API">
+      <ng-template ngbTabContent>
+        <div class="p-3">
+          <app-api-section></app-api-section>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
 </div>

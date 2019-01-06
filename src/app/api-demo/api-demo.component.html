@@ -1,0 +1,31 @@
+<h4>{{className}}</h4>
+<span class="badge badge-success">{{type}}</span>
+
+<p class="lead">
+  {{description}}
+</p>
+
+<p *ngIf="selector">Selector: <code>{{selector}}</code></p>
+
+<div *ngIf="inputs.length">
+  <h5>Inputs</h5>
+
+  <div class="d-flex border-bottom" *ngFor="let inputItem of inputs; first as f" [class.border-top]="f">
+    <div class="col-md-3 py-2">
+      <code>
+        {{inputItem.name}}
+      </code>
+    </div>
+    <div class="col-md py-2">
+      <div>
+        {{inputItem.description}}
+      </div>
+      <small class="d-block" *ngIf="inputItem.type">
+        <i>Type: </i> <code>{{inputItem.type}}</code>
+      </small>
+      <small class="d-block" *ngIf="inputItem.default">
+        <i>Default value: </i> <code>{{inputItem.default}}</code>
+      </small>
+    </div>
+  </div>
+</div>
