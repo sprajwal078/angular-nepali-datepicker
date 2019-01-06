@@ -1,5 +1,5 @@
 # Angular Nepali Datepicker
-Simple datepicker component for angular application
+Simple Nepali datepicker component for angular application
 
 ## Installation
 ```bash
