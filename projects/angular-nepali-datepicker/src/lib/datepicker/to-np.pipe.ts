@@ -13,6 +13,9 @@ export class ToNpPipe implements PipeTransform {
           case 'number':
             const split = value.toString().split('');
             return split.map(n => {
+              if (n === ' ') {
+                return ' ';
+              }
               return numberMapping[+n] ? numberMapping[+n] : n;
             }).join('');
           case 'word':

@@ -1,7 +1,7 @@
 import { Component, OnInit, forwardRef, Input, ViewEncapsulation } from '@angular/core';
 import * as NepaliDateConverter from 'nepali-date';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NepaliDate, MonthData, DaysMapping, MonthMapping } from './types';
+import { NepaliDate, MonthData, DaysMapping, MonthMapping, DateFormatter } from './types';
 import { daysMapping, monthsMapping } from './mapping';
 
 @Component({
@@ -56,7 +56,7 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   dayDisplayType: 'default' | 'short' = 'default';
 
   @Input()
-  dateFormatter = (selectedDate: NepaliDate) => {
+  dateFormatter: DateFormatter = (selectedDate: NepaliDate) => {
     const dd = selectedDate.day < 10 ? '0' + selectedDate.day : selectedDate.day;
     const mm = selectedDate.month < 10 ? '0' + selectedDate.month : selectedDate.month;
     return `${dd}/${mm}/${this.selectedDate.year}`;

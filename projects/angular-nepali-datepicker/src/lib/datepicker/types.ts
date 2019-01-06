@@ -36,3 +36,5 @@ export interface WordsMapping {
   year: string;
   month: string;
 }
+
+export type DateFormatter = (date: NepaliDate) => string;

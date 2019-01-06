@@ -17,5 +17,14 @@
     "nepali datepicker",
     "bs",
     "ad"
-  ]
+  ],
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/sprajwal078/angular-nepali-datepicker"
+  },
+  "author": {
+    "name": "Prajwal Simkhada",
+    "email": "prajwal078@gmail.com",
+    "url": "http://prajwalsimkhada.com.np/"
+  }
 }
