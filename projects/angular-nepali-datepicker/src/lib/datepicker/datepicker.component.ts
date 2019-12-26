@@ -1,13 +1,25 @@
-import { Component, OnInit, forwardRef, Input, ViewEncapsulation } from '@angular/core';
-import * as NepaliDateConverter from 'nepali-date';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NepaliDate, MonthData, DaysMapping, MonthMapping, DateFormatter } from './types';
-import { daysMapping, monthsMapping } from './mapping';
+import {
+  Component,
+  OnInit,
+  forwardRef,
+  Input,
+  ViewEncapsulation
+} from "@angular/core";
+import * as NepaliDateConverter from "nepali-date";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import {
+  NepaliDate,
+  MonthData,
+  DaysMapping,
+  MonthMapping,
+  DateFormatter
+} from "./types";
+import { daysMapping, monthsMapping } from "./mapping";
 
 @Component({
-  selector: 'np-datepicker',
-  templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.scss'],
+  selector: "np-datepicker",
+  templateUrl: "./datepicker.component.html",
+  styleUrls: ["./datepicker.component.scss"],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -18,11 +30,10 @@ import { daysMapping, monthsMapping } from './mapping';
   encapsulation: ViewEncapsulation.None
 })
 export class DatepickerComponent implements OnInit, ControlValueAccessor {
-
   nepaliDateToday: NepaliDate = { day: 0, month: 0, year: 0 };
   currentNepaliDate: NepaliDate = { day: 0, month: 0, year: 0 };
   selectedDate: NepaliDate;
-  formattedDate = '';
+  formattedDate = "";
   currentDate = new Date();
 
   displayDate: string;
@@ -47,22 +58,24 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   inputClass: string;
 
   @Input()
-  language: 'en' | 'ne' = 'ne';
+  language: "en" | "ne" = "ne";
 
   @Input()
-  monthDisplayType: 'default' | 'modern' | 'short' = 'default';
+  monthDisplayType: "default" | "modern" | "short" = "default";
 
   @Input()
-  dayDisplayType: 'default' | 'short' = 'default';
+  dayDisplayType: "default" | "short" = "default";
 
   @Input()
   dateFormatter: DateFormatter = (selectedDate: NepaliDate) => {
-    const dd = selectedDate.day < 10 ? '0' + selectedDate.day : selectedDate.day;
-    const mm = selectedDate.month < 10 ? '0' + selectedDate.month : selectedDate.month;
+    const dd =
+      selectedDate.day < 10 ? "0" + selectedDate.day : selectedDate.day;
+    const mm =
+      selectedDate.month < 10 ? "0" + selectedDate.month : selectedDate.month;
     return `${dd}/${mm}/${this.selectedDate.year}`;
-  }
+  };
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     const nepaliDateToday = new NepaliDateConverter(new Date());
@@ -107,7 +120,7 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
       3: [],
       4: [],
       5: [],
-      6: [],
+      6: []
     };
   }
 
@@ -117,18 +130,19 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  propagateChange = (_: any) => { };
+  propagateChange = (_: any) => {};
 
-  propagateTouch = (_: any) => { };
+  propagateTouch = (_: any) => {};
 
   writeValue(value: any) {
     if (value) {
       this.selectedDate = value;
+      this.currentNepaliDate = value;
       this.formatValue();
     }
   }
 
-  registerOnTouched() { }
+  registerOnTouched() {}
 
   registerOnChange(fn) {
     this.propagateChange = fn;
@@ -162,7 +176,11 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
   }
 
   setMonthDataAfter(day, date) {
-    const nepaliDate = new NepaliDateConverter(this.currentNepaliDate.year, this.currentNepaliDate.month, date);
+    const nepaliDate = new NepaliDateConverter(
+      this.currentNepaliDate.year,
+      this.currentNepaliDate.month,
+      date
+    );
     //  only add the data if the current month matches
     if (nepaliDate.getMonth() === this.currentNepaliDate.month) {
       if (day > 6) {
@@ -201,14 +219,24 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
 
   selectYear(year: string) {
     this.currentNepaliDate.year = +year;
-    const newDate = new NepaliDateConverter(this.currentNepaliDate.year, this.currentNepaliDate.month, this.currentNepaliDate.day);
+    const newDate = new NepaliDateConverter(
+      this.currentNepaliDate.year,
+      this.currentNepaliDate.month,
+      this.currentNepaliDate.day
+    );
     this.currentDate = newDate.getEnglishDate();
     this.setCurrentMonthData();
   }
 
   selectMonth(month: string) {
-    this.currentNepaliDate.month = this.monthsMapping[this.language][this.monthDisplayType].indexOf(month);
-    const newDate = new NepaliDateConverter(this.currentNepaliDate.year, this.currentNepaliDate.month, this.currentNepaliDate.day);
+    this.currentNepaliDate.month = this.monthsMapping[this.language][
+      this.monthDisplayType
+    ].indexOf(month);
+    const newDate = new NepaliDateConverter(
+      this.currentNepaliDate.year,
+      this.currentNepaliDate.month,
+      this.currentNepaliDate.day
+    );
     this.currentDate = newDate.getEnglishDate();
     this.setCurrentMonthData();
   }
@@ -227,5 +255,4 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor {
     this.isOpen = false;
     this.setCurrentDate();
   }
-
 }
