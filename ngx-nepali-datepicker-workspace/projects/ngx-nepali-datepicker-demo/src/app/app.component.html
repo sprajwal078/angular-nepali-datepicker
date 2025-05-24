@@ -1,0 +1,36 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>NGX Nepali Datepicker Demo</h1>
+  </header>
+
+  <nav class="app-tab-nav">
+    <button 
+      type="button"
+      class="app-tab-button"
+      [class.app-tab-active]="activeTab === 'examples'"
+      (click)="selectTab('examples')">
+      Examples
+    </button>
+    <button 
+      type="button"
+      class="app-tab-button"
+      [class.app-tab-active]="activeTab === 'api'"
+      (click)="selectTab('api')">
+      API
+    </button>
+  </nav>
+
+  <main class="app-tab-content">
+    <div *ngIf="activeTab === 'examples'">
+      <app-examples-section></app-examples-section>
+    </div>
+    <div *ngIf="activeTab === 'api'">
+      <app-api-section></app-api-section>
+    </div>
+  </main>
+
+  <hr>
+  <h3>Test the Datepicker Core Component:</h3>
+  <ndp-ngx-nepali-datepicker-core></ndp-ngx-nepali-datepicker-core>
+  
+</div>

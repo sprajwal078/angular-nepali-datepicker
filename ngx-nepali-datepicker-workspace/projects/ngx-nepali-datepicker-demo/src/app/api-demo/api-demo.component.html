@@ -1,0 +1,40 @@
+<div class="api-card">
+  <h4 class="api-className">{{ className }}</h4>
+  <p class="api-selector">Selector: <code>{{ selector }}</code></p>
+  
+  <div class="api-description" *ngIf="description">
+    <h5>Description</h5>
+    <p>{{ description }}</p>
+  </div>
+
+  <div class="api-inputs" *ngIf="inputs && inputs.length > 0">
+    <h5>Inputs</h5>
+    <div *ngFor="let item of inputs" class="api-item">
+      <div class="api-item-name">
+        <code>{{ item.name }}</code>
+      </div>
+      <div class="api-item-details">
+        <span *ngIf="item.type" class="api-item-type">Type: <code>{{ item.type }}</code></span>
+        <span *ngIf="item.default" class="api-item-default">Default: <code>{{ item.default }}</code></span>
+        <p class="api-item-description">{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder for Outputs and Methods if they were to be added -->
+  <!--
+  <div class="api-outputs" *ngIf="outputs && outputs.length > 0">
+    <h5>Outputs</h5>
+    <div *ngFor="let item of outputs" class="api-item">
+      ...
+    </div>
+  </div>
+
+  <div class="api-methods" *ngIf="methods && methods.length > 0">
+    <h5>Methods</h5>
+    <div *ngFor="let item of methods" class="api-item">
+      ...
+    </div>
+  </div>
+  -->
+</div>

@@ -1,0 +1,58 @@
+/* Styles for examples-section component */
+:host {
+  display: block;
+}
+
+/* Styles for example 6: Custom Input Class */
+.custom-input-class {
+  width: 100%; /* Make it full width of its container in the example card */
+  padding: 8px 12px; /* Custom padding */
+  border: 2px solid #27a4f7; /* Custom border (blue) */
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  font-size: 1em;
+  font-family: 'Courier New', Courier, monospace; /* Example of a different font */
+  color: #333;
+}
+
+/* Styles for example 7: Bootstrap-like form-control */
+.demo-form-control {
+  display: block;
+  width: 100%; /* Or specific width if preferred for demo layout */
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057; /* Bootstrap's input text color */
+  background-color: #fff; /* Bootstrap's input background color */
+  background-clip: padding-box;
+  border: 1px solid #ced4da; /* Bootstrap's input border color */
+  border-radius: .25rem; /* Bootstrap's border radius */
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.demo-form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff; /* Bootstrap's focus border color */
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25); /* Bootstrap's focus shadow */
+}
+
+/* General spacing for demo clarity */
+app-example-demo ndp-ngx-nepali-datepicker-core + div {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Style for the checkbox in example 5 */
+app-example-demo div > input[type="checkbox"] + label {
+    margin-left: 5px;
+    user-select: none;
+}
+app-example-demo div > input[type="checkbox"] {
+    margin: 5px 0;
+}

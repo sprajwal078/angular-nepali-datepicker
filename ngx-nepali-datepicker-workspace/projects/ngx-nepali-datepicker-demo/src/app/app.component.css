@@ -1,0 +1,59 @@
+/* Basic styling for the demo application */
+.app-container {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  color: #333;
+  margin: 0;
+}
+
+.app-tab-nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.app-tab-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  margin: 0 5px;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.app-tab-button:hover {
+  color: #007bff;
+}
+
+.app-tab-button.app-tab-active {
+  color: #007bff;
+  border-bottom-color: #007bff;
+  font-weight: bold;
+}
+
+.app-tab-content {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-top: none;
+  min-height: 200px; /* Placeholder height */
+}
+
+/* Styling for the test datepicker instance */
+ndp-ngx-nepali-datepicker-core {
+  display: block; /* Or inline-block as needed */
+  margin-top: 10px;
+}

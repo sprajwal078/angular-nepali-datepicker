@@ -1,0 +1,49 @@
+<h2>Datepicker Examples</h2>
+
+<app-example-demo heading="1. Default Usage" [code]="exampleCodeSnippets.ex1">
+  <ndp-ngx-nepali-datepicker-core [(ngModel)]="date1"></ndp-ngx-nepali-datepicker-core>
+  <div>Selected value: {{ date1 | json }}</div>
+</app-example-demo>
+
+<app-example-demo heading="2. Month Display: Modern" [code]="exampleCodeSnippets.ex2">
+  <ndp-ngx-nepali-datepicker-core [(ngModel)]="date2" monthDisplayType="modern"></ndp-ngx-nepali-datepicker-core>
+  <div>Selected value: {{ date2 | json }}</div>
+</app-example-demo>
+
+<app-example-demo heading="3. Short Day/Month Names" [code]="exampleCodeSnippets.ex3">
+  <ndp-ngx-nepali-datepicker-core [(ngModel)]="date3" monthDisplayType="short" dayDisplayType="short"></ndp-ngx-nepali-datepicker-core>
+  <div>Selected value: {{ date3 | json }}</div>
+</app-example-demo>
+
+<app-example-demo heading="4. Language: English" [code]="exampleCodeSnippets.ex4">
+  <ndp-ngx-nepali-datepicker-core [(ngModel)]="date4" language="en"></ndp-ngx-nepali-datepicker-core>
+  <div>Selected value: {{ date4 | json }}</div>
+</app-example-demo>
+
+<app-example-demo heading="5. Always Visible & Hideable Input" [code]="exampleCodeSnippets.ex5">
+  <div>
+    <input type="checkbox" [(ngModel)]="hideInputForAlwaysVisibleExample" id="hideInputCheckEx5">
+    <label for="hideInputCheckEx5" style="margin-left: 5px;">Hide Input Field</label>
+  </div>
+  <ndp-ngx-nepali-datepicker-core 
+    [(ngModel)]="date5" 
+    [alwaysVisible]="true" 
+    [hideInput]="hideInputForAlwaysVisibleExample">
+  </ndp-ngx-nepali-datepicker-core>
+  <div>Selected value: {{ date5 | json }}</div>
+</app-example-demo>
+
+<app-example-demo heading="6. Custom Date Formatter & Input Class" [code]="exampleCodeSnippets.ex6">
+  <ndp-ngx-nepali-datepicker-core 
+    [(ngModel)]="date6" 
+    [dateFormatter]="customDateFormatter" 
+    inputClass="custom-input-class">
+  </ndp-ngx-nepali-datepicker-core>
+  <div>Selected value (raw): {{ date6 | json }}</div>
+  <div>Formatted by component: {{ customDateFormatter(date6) }}</div>
+</app-example-demo>
+
+<app-example-demo heading="7. Input Class (form-control like)" [code]="exampleCodeSnippets.ex7">
+  <ndp-ngx-nepali-datepicker-core [(ngModel)]="date7" inputClass="demo-form-control"></ndp-ngx-nepali-datepicker-core>
+  <div>Selected value: {{ date7 | json }}</div>
+</app-example-demo>

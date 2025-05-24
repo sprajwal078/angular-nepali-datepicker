@@ -1,0 +1,56 @@
+<!-- Input field (conditionally hidden) -->
+<input
+  *ngIf="!hideInput"
+  type="text"
+  [value]="formattedInputValue"
+  (click)="onInputClick()"
+  (blur)="onInputBlur()"
+  [ngClass]="inputClass"
+  placeholder="YYYY/MM/DD"
+  readonly
+/>
+
+<!-- Calendar (Overlay or inline) -->
+<div 
+  class="ndp-calendar-container"
+  *ngIf="isCalendarOpen || alwaysVisible"
+  [class.ndp-always-visible]="alwaysVisible">
+
+  <div class="ndp-header">
+    <button type="button" class="ndp-prev-month" (click)="previousMonth()">‹</button>
+    <select [ngModel]="currentDisplayNepaliDate.month" (ngModelChange)="changeMonth($event)">
+      <option *ngFor="let monthName of monthNames; let i = index" [value]="i">
+        {{ monthName }}
+      </option>
+    </select>
+    <select [ngModel]="currentDisplayNepaliDate.year" (ngModelChange)="changeYear($event)">
+      <option *ngFor="let year of yearsList" [value]="year">
+        {{ language === 'ne' ? datepickerService.formatNepaliNumber(year) : year }}
+      </option>
+    </select>
+    <button type="button" class="ndp-next-month" (click)="nextMonth()">›</button>
+  </div>
+
+  <table class="ndp-calendar-table">
+    <thead>
+      <tr>
+        <th *ngFor="let dayName of dayNames" class="ndp-weekday">{{ dayName }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let week of calendarGrid">
+        <td 
+          *ngFor="let day of week"
+          class="ndp-day-cell"
+          [class.ndp-current-month]="day.isCurrentMonth"
+          [class.ndp-other-month]="!day.isCurrentMonth"
+          [class.ndp-disabled]="day.isDisabled || !day.isCurrentMonth"
+          [class.ndp-selected]="isSelected(day)"
+          [class.ndp-today]="isToday(day)"
+          (click)="day.isCurrentMonth && !day.isDisabled && selectDate(day)">
+          {{ language === 'ne' && day.bsDay ? datepickerService.formatNepaliNumber(day.bsDay) : day.bsDay }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,146 @@
+/* 
+  Core Styles for ngx-nepali-datepicker-core
+  Translated from original SCSS and adapted for new HTML structure.
+*/
+
+/* Base component host for relative positioning of the popup */
+:host {
+  display: inline-block; /* Allows input and calendar to position correctly */
+  position: relative;
+  font-family: 'arial', sans-serif;
+  font-size: 14px;
+}
+
+/* Input field styling */
+input[type="text"] {
+  /* Basic styling, can be overridden by inputClass */
+  padding: 6px 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'arial', sans-serif;
+}
+
+/* Calendar container */
+.ndp-calendar-container {
+  display: block; /* Default for alwaysVisible */
+  padding: 8px 5px;
+  border: 1px solid lightgray;
+  background-color: white;
+  width: auto; /* Or a fixed width, e.g., 300px */
+  min-width: 280px; /* Ensure enough space for calendar */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Basic shadow for popup effect */
+}
+
+/* Popup specific styling */
+:host:not(.ndp-always-visible-host) .ndp-calendar-container:not(.ndp-always-visible) {
+  position: absolute;
+  top: 100%; /* Position below the input */
+  left: 0;
+  z-index: 1000; /* Ensure it's above other content */
+  margin-top: 2px; /* Small gap from input */
+}
+
+.ndp-calendar-container.ndp-always-visible {
+  position: static; /* Override absolute positioning if always visible */
+  box-shadow: none;
+}
+
+/* Header: Month/Year navigation and selects */
+.ndp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px; /* Original 'option-margin' */
+}
+
+.ndp-header select {
+  height: 24px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  padding: 0 5px;
+  font-size: 14px;
+  font-family: 'arial', sans-serif;
+  margin: 0 5px; /* Spacing for selects, similar to option-year-container-margin */
+}
+
+.ndp-header button {
+  background: none;
+  border: 1px solid transparent; /* Make borderless but keep alignment */
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0 8px;
+  color: #333;
+}
+.ndp-header button:hover {
+  color: #27a4f7; /* blue */
+}
+
+
+/* Calendar Table */
+.ndp-calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.ndp-weekday { /* Corresponds to original .datepicker__weekday */
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 5px; /* Original weekday-margin */
+  width: 40px; /* days-size */
+  height: 40px; /* days-size, though for th line-height might be more relevant */
+  line-height: 30px; /* Adjusted from days-size for header */
+}
+
+.ndp-day-cell { /* Corresponds to original .datepicker__date */
+  width: 40px;  /* days-size */
+  height: 40px; /* days-size */
+  line-height: 40px; /* days-size */
+  cursor: pointer;
+  border: 1px solid #eee; /* Light border for cells */
+  box-sizing: border-box; /* Ensure padding/border are within width/height */
+}
+
+.ndp-day-cell.ndp-current-month:hover:not(.ndp-selected):not(.ndp-disabled) {
+  color: #27a4f7; /* hover-color: blue */
+  background-color: #e9f5ff; /* Light blue background on hover */
+}
+
+.ndp-selected { /* Corresponds to original .datepicker__date--active */
+  color: white;
+  background-color: #27a4f7; /* active-day-background: blue */
+}
+.ndp-selected:hover {
+  background-color: #1e88e5; /* Darker blue on hover for selected */
+}
+
+.ndp-today:not(.ndp-selected) { /* Corresponds to original .datepicker__date--current-day */
+  color: #27a4f7; /* selected-color: blue (for today's date text if not selected) */
+  font-weight: bold;
+  border: 1px solid #27a4f7; /* Add a border to highlight today */
+}
+.ndp-today.ndp-selected { /* Ensure today's selected style is distinct if needed */
+   /* Already handled by .ndp-selected, but can add more specific styles */
+}
+
+
+.ndp-other-month {
+  color: #aaa;
+  cursor: default;
+}
+.ndp-other-month:hover {
+  background-color: transparent; /* No hover effect for other month days */
+}
+
+.ndp-disabled { /* Combined with .ndp-other-month for visual effect */
+  color: #ccc !important; /* Ensure disabled color takes precedence */
+  cursor: default !important;
+  pointer-events: none; /* Make it unclickable */
+  background-color: #f9f9f9 !important; /* Light gray background for disabled */
+  text-decoration: none; /* Remove line-through if previously applied */
+}
+.ndp-disabled:hover {
+  background-color: #f9f9f9 !important;
+}

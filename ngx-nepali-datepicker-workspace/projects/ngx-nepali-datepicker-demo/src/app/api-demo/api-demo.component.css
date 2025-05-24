@@ -1,0 +1,93 @@
+/* Styles for api-demo component card */
+.api-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.api-card h4.api-className {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #33475b; /* Darker blue for class name */
+  font-family: monospace;
+  font-size: 1.4em;
+}
+
+.api-selector {
+  font-family: monospace;
+  background-color: #e7e9eb;
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-size: 0.95em;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.api-description h5 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 1.1em;
+}
+.api-description p {
+  margin-bottom: 15px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.api-inputs h5 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 1.1em;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.api-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+.api-item:last-child {
+  border-bottom: none;
+}
+
+.api-item-name code {
+  font-weight: bold;
+  font-family: monospace;
+  color: #c7254e; /* Bootstrap's code color */
+  background-color: #f9f2f4; /* Light pinkish background for name */
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.api-item-details {
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+.api-item-type,
+.api-item-default {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 0.9em;
+  color: #777;
+}
+
+.api-item-type code,
+.api-item-default code {
+  background-color: #f0f0f0;
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.api-item-description {
+  margin-top: 5px;
+  font-size: 0.95em;
+  color: #333;
+  line-height: 1.5;
+}

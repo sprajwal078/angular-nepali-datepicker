@@ -1,0 +1,13 @@
+<div class="example-card">
+  <h4>{{ heading }}</h4>
+  
+  <div class="example-live-area">
+    <p><strong>Live Demo:</strong></p>
+    <ng-content></ng-content> <!-- This is where the actual datepicker instance will be projected -->
+  </div>
+
+  <div class="example-code-area" *ngIf="code">
+    <p><strong>Code:</strong></p>
+    <pre><code class="language-html">{{ code }}</code></pre>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+/* Styles for api-section component */
+:host {
+  display: block;
+  padding: 10px;
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
